@@ -1,0 +1,13 @@
+{{ set . "title" "Halaman Admin SID" }}
+{{ template "header.html" . }}
+
+{{ if .admin }}
+	<h3>{{.PageName}}</h3>
+	{{ if .flash}}
+		{{ template "flash.html" . }}
+	{{ end }}
+
+	<h1>{{.Nama}}</h1>
+{{ end }}
+
+{{ template "footer.html" . }}

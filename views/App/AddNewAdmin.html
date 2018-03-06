@@ -1,0 +1,88 @@
+{{ set . "title" "Add New Admin" }}
+{{ template "header.html" . }}
+
+<div style="padding-top:70px;">
+{{ if .admin }}
+	<div class="box box-danger">
+		<div class="box-header with-border">
+			<h3 class="box-title">Add New Admin</h3>
+		</div>
+
+		<form role="form" method="POST" action="{{ url "App.AddingNewAdmin" }}">
+		<div class="box-body">
+			{{ with $field := field "usr.Nama" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">Nama</label>
+				<input type="text" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+			{{ with $field := field "usr.TempatLahir" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">TempatLahir</label>
+				<input type="text" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+			{{ with $field := field "usr.TglLahir" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">TglLahir</label>
+				<input type="date" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+			{{ with $field := field "usr.Alamat" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">Alamat</label>
+				<textarea name="{{ $field.Name }}" class="form-control" rows="3">{{ $field.Flash }}</textarea>
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+			{{ with $field := field "usr.Username" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">Username</label>
+				<input type="text" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+			{{ with $field := field "password" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">password</label>
+				<input type="password" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+            {{ with $field := field "confirmPassword" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">Confirm</label>
+				<input type="password" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+			{{ with $field := field "usr.Level" . }}
+			<div class="form-group {{ $field.ErrorClass }}">
+				<label class="control-label">Level</label>
+				<input type="text" value="{{ $field.Flash }}" name="{{ $field.Name }}" class="form-control">
+				<span class="error text-danger">{{ $field.Error }}</span>
+			</div>
+			{{ end }}
+		</div>
+		<div class="box-footer">
+			<button type="submit" class="btn btn-flat btn-danger pull-right">
+				<span class="fa fa-user-plus"></span> SIMPAN
+			</button>
+		</div>
+		</form>
+	</div>
+{{ else }}
+	<div class="alert alert-danger alert-dismissible text-center">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<h4><i class="icon fa fa-ban"></i> Alert!</h4>
+		Maaf Halaman ini tidak Boleh diakses selain Admin utama !
+		<hr>
+		Untuk menambah admin baru silahkan hubungi Admin Utama...
+	</div>
+{{ end }}
+</div>
+
+{{ template "footer.html" . }}

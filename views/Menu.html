@@ -1,0 +1,124 @@
+<!-- BEGIN HEADER -->
+<header class="main-header">
+	<a href="" class="logo" style="position: fixed;">
+		<!-- mini logo for sidebar mini 50x50 pixels -->
+		<span class="logo-mini">
+			<img src="/public/AdminLTE-2.4.2/dist/img/user1-128x128.jpg" class="img-responsive" />
+		</span>
+		<!-- logo for regular state and mobile devices -->
+		<span class="logo-lg"><b>Desa</b>Korleko</span>
+	</a>
+	<nav class="navbar navbar-fixed-top">
+		<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+		<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</a>
+
+		<div class="container-fluid">
+			<div class="navbar-header user user-menu">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+					<i class="fa fa-angle-down"></i>
+				</button>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbar-collapse">
+			{{ if .admin }}
+				
+				<ul class="nav navbar-nav navbar-left">
+					<li {{if .dashboard}} class="active" {{end}}><a href="{{ url "App.AdminPage" }}">BERANDA<span class="sr-only">(curent)</span></a></li>
+					<li><a href="#">BERITA</a></li>
+					<li><a href="#">KEGIATAN</a></li>
+					<li {{if .dataAdmin}} class="active" {{end}}><a href="{{url "App.DataAdmin"}}">DATA ADMIN</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="{{ url "ClientSide.LogOut" }}"><i class="fa fa-sign-in"></i> KELUAR</a></li>
+				</ul>
+
+			{{ else }}
+
+				<ul class="nav navbar-nav navbar-left">
+					<li {{if .index}} class="active" {{end}}><a href="{{ url "ClientSide.Index" }}">BERANDA<span class="sr-only">(curent)</span></a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">PROFIL <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li class="dropdown-header text-blue"><b>PROFIL DESA</b></li>
+							<li class="divider"></li>
+							<li><a href="#">Sejarah Desa</a></li>
+							<li><a href="#">Wilayah Desa</a></li>
+							<li><a href="#">Masyarakat Desa</a></li>
+							<li><a href="#">Data Desa</a></li>
+							<li><a href="#">Kontak Desa</a></li>
+							<li class="divider"></li>
+
+							<li class="dropdown-header text-blue"><b>LEMBAGA DESA</b></li>
+							<li class="divider"></li>
+							<li><a href="#">Visi dan Misi</a></li>
+							<li><a href="#">Struktur</a></li>
+							<li><a href="#">Pemerintah Desa</a></li>
+							<li><a href="#">Badan Permusyawaratan Desa</a></li>
+						</ul>
+					</li>
+					<li {{if .berita}} class="active" {{end}}><a href="#">BERITA</a></li>
+					<li {{if .kegiatan}} class="active" {{end}}><a href="#">KEGIATAN</a></li>
+					<li {{if .laporan}} class="active" {{end}}><a href="#">LAPORAN</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li {{if .loginPage}} class="active" {{end}}><a href="{{ url "ClientSide.LoginPage" }}"><i class="fa fa-sign-in"></i> MASUK</a></li>
+				</ul>
+			{{ end }}
+			</div>
+			
+		</div>
+	</nav>
+</header>
+<!-- END HEADER -->
+
+<!-- MENU SAMPING -->
+<aside class="main-sidebar" style="position: fixed;">
+	<section class="sidebar">
+		{{if .admin}}
+		<div class="user-panel">
+			<div class="pull-left image">
+				<img src="/public/AdminLTE-2.4.2/dist/img/user1-128x128.jpg" class="img-circle" alt="Foto Admin">
+			</div>
+			<div class="pull-left info">
+				<p>{{.Nama}}</p>
+				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+			</div>
+		</div>
+		{{end}}
+		<!-- search form -->
+		<form action="#" method="get" class="sidebar-form">
+			<div class="input-group">
+				<input type="text" name="q" class="form-control" placeholder="Cari...">
+			<span class="input-group-btn">
+				<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+			</span>
+			</div>
+		</form>
+		<ul class="sidebar-menu" data-widget="tree">
+			<li class="header">MENU</li>
+			<li class="treeview">
+				<a href="#"><i class="fa fa-home"></i> <span>Beranda</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+			</li>
+			<li class="treeview">
+				<a href="#"><i class="fa fa-newspaper-o"></i> <span>Berita</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+			</li>
+			<li class="treeview">
+				<a href="#"><i class="fa fa-file-text"></i> <span>Laporan</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+				<ul class="treeview-menu">
+					<li class="treeview"><a href="#"><i class="fa fa-dollar"></i> Kas Desa</a></li>
+					<li class="treeview"><a href="#"><i class="fa fa-road"></i> Pembangunan</a></li>
+					<li class="treeview"><a href="#"><i class="fa fa-gears"></i> Kegiatan</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+</aside>
+<!-- END SAMPING -->
+<!-- BEGIN CONTENT -->
+<div class="content-wrapper">
+	<div class="container-fluid" {{if .admin}} style="padding-top: 50px;"{{end}}>
+
